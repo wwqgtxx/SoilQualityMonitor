@@ -11,6 +11,9 @@
         <filter-name>struts2</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
+    <listener>
+        <listener-class>io.github.wwqgtxx.soilqualitymonitor.InitListener</listener-class>
+    </listener>
     <welcome-file-list>
         <welcome-file>index.html</welcome-file>
     </welcome-file-list>

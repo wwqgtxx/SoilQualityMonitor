@@ -14,12 +14,12 @@
                 /test.jsp
             </result>
         </action>
-        <action name="SetVoteAction" class="io.github.wwqgtxx.soilqualitymonitor.ParseDataAction" method="doSet">
+        <action name="SetDataAction" class="io.github.wwqgtxx.soilqualitymonitor.ParseDataAction" method="doSet">
             <result type="json">
                 <param name="root">dataMap</param>
             </result>
         </action>
-        <action name="GetVoteAction" class="io.github.wwqgtxx.soilqualitymonitor.ParseDataAction" method="doGet">
+        <action name="GetDataAction" class="io.github.wwqgtxx.soilqualitymonitor.ParseDataAction" method="doGet">
             <result type="json">
                 <param name="root">dataMap</param>
             </result>

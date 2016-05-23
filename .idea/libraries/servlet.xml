@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="servlet">
+    <CLASSES>
+      <root url="jar://D:/java/wildfly-10.0.0.Final/modules/system/layers/base/javax/servlet/api/main/jboss-servlet-api_3.1_spec-1.0.0.Final.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
