@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="SoilQualityMonitor:war">
+    <output-path>$PROJECT_DIR$/out/artifacts/SoilQualityMonitor_war</output-path>
+    <root id="archive" name="SoilQualityMonitor_war.war">
+      <element id="artifact" artifact-name="SoilQualityMonitor:war exploded" />
+    </root>
+  </artifact>
+</component>

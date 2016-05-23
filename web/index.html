@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link href="lib/bootstrap.min.css" rel="stylesheet">
+    <title></title>
+</head>
+<body>
+    <div class="container">
+        <div>
+            <div>
+                <h1>土壤质量检测</h1>
+            </div>
+
+            <div>
+                <h2>数据显示</h2>
+                <div class="table-responsive">
+                    <table class="table table-striped" id="tableArea">
+                        <!-- On rows -->
+                        <tr class="title" id="tableTitle">
+                            <th class="dt_name">项目名称</th>
+                            <th class="dt_data">数据</th>
+                        </tr>
+                        <tr>
+                            <td class="dt_name">土壤温度</td>
+                            <td class="dt_data" id="soiltemperature">*</td>
+                        </tr>
+                        <tr>
+                            <td class="dt_name">土壤湿度</td>
+                            <td class="dt_data" id="soilmoisture">*</td>
+                        </tr>
+                        <tr>
+                            <td class="dt_name">土壤肥力</td>
+                            <td class="dt_data" id="soilfertility">*</td>
+                        </tr>
+                        <tr>
+                            <td class="dt_name">室内温度</td>
+                            <td class="dt_data" id="indoortemperature">*</td>
+                        </tr>
+                        <tr>
+                            <td class="dt_name">室内湿度</td>
+                            <td class="dt_data" id="indoormoisture">*</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <div>
+                <h2>数据设置</h2>
+                <form class="form-inline" id="datasetform">
+                    <div class="form-group">
+                        <label for="detectiontime">检测时间</label>
+                        <input type="text" class="form-control" name="setting.detectiontime" id="detectiontime" value="" placeholder="检测时间">
+                    </div>
+                    <div class="form-group">
+                        <label for="lowertemperature">温度下限</label>
+                        <input type="text" class="form-control" name="setting.lowertemperature" id="lowertemperature" value="" placeholder="温度下限">
+                    </div>
+                    <button type="submit" class="btn btn-default" id="sub">提交修改</button>
+                </form>
+
+                <!--<button type="button" class="btn btn-danger btn-block" id="btnclean">清空所有数据</button>-->
+            </div>
+        </div>
+        <!--
+        <div class="col-sm-3 col-sm-offset-1">
+            <div>
+                <h4>评论区</h4>
+            </div>
+
+            <div id="scrollbar1" style="max-height:200px">
+                <ul class="list-group" id="danMuList">
+                </ul>
+            </div>
+
+            <div>
+                <h4>弹幕发送区域</h4>
+                <form class="form-inline" id="danMuform">
+                    <div class="form-group">
+                        <label for="sender">姓名</label>
+                        <input type="text" class="form-control" name="danMu.sender" id="sender" value="张三" placeholder="姓名">
+                    </div>
+                    <div class="form-group">
+                        <label for="message">内容</label>
+                        <input type="text" class="form-control" name="danMu.message" id="message" value="好好好！" placeholder="内容">
+                    </div>
+                    <button type="submit" class="btn btn-default" id="subDanMu">提交修改</button>
+                </form>
+
+            </div>
+        </div>
+        -->
+
+    </div><!-- /.container -->
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="lib/jquery-1.12.3.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="lib/bootstrap.min.js"></script>
+    <script src="lib/jquery-confirm.js"></script>
+    <link href="lib/jquery-confirm.css" rel="stylesheet">
+    <script src="index.js"></script>
+</body>
+</html>
