@@ -24,5 +24,15 @@
                 <param name="root">dataMap</param>
             </result>
         </action>
+        <action name="SetSensorConnectorAction" class="io.github.wwqgtxx.soilqualitymonitor.ParseSensorConnectorAction" method="doSet">
+            <result type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="GetSensorConnectorAction" class="io.github.wwqgtxx.soilqualitymonitor.ParseSensorConnectorAction" method="doGet">
+            <result type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
     </package>
 </struts>

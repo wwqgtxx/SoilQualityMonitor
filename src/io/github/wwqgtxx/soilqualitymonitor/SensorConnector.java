@@ -19,6 +19,11 @@ public class SensorConnector {
     private ArrayBlockingQueue<String> outputQueue;
     private ReentrantLock lock;
     private Thread connectThread;
+
+    public boolean isInit() {
+        return isInit;
+    }
+
     private boolean isInit = false;
     public static SensorConnector getSensorConnector(){
         return sensorConnector;
@@ -98,6 +103,7 @@ public class SensorConnector {
                 }
                 else{
                     out.println();
+                    in.readLine();
                 }
             }
         }
@@ -155,6 +161,11 @@ public class SensorConnector {
             Socket socket = null;
             BufferedReader in;
             PrintWriter out;
+            try {
+                serverSocket = new ServerSocket(port);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             while (!isInterrupted){
                 try {
                     serverSocket = new ServerSocket(port);

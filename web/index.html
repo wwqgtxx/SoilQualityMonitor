@@ -14,6 +14,36 @@
                 <h1>土壤质量检测</h1>
             </div>
 
+            <div id="scsettingdiv">
+                <h2>监控器数据设置</h2>
+                <form class="form-inline" id="scsettingform">
+                    <div class="form-group">
+                        <label>工作模式</label>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="scmode" id="scserver" value="server">
+                                服务器模式
+                            </label>
+                        </div>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="scmode" id="scclient" value="client" checked>
+                                客户端模式
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group" id="schostdiv">
+                        <label for="schost">监控器地址</label>
+                        <input type="text" class="form-control" name="schost" id="schost" value="localhost" placeholder="监控器地址">
+                    </div>
+                    <div class="form-group" id="scportdiv">
+                        <label for="scport">端口号</label>
+                        <input type="text" class="form-control" name="scport" id="scport" value="8266" placeholder="端口号">
+                    </div>
+                    <button type="submit" class="btn btn-default" id="subscsetting">提交</button>
+                </form>
+            </div>
+
             <div>
                 <h2>数据显示</h2>
                 <div class="table-responsive">
