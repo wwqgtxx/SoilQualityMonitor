@@ -95,7 +95,7 @@ $("#sub").click(function(){
     $.ajax({
         cache: true,
         type: "POST",
-        url:"SetSensorConnectorAction",
+        url:"SetDataAction",
         data:$("#datasetform").serialize(),
         async: false,
         error: function(request) {
@@ -130,7 +130,7 @@ $("subscsetting").click(function(){
     $.ajax({
         cache: true,
         type: "POST",
-        url:"SetDataAction",
+        url:"SetSensorConnectorAction",
         data:$("#scsettingform").serialize(),
         async: false,
         error: function(request) {
