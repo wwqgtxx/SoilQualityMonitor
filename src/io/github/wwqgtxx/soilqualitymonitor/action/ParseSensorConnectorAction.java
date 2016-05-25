@@ -1,6 +1,8 @@
-package io.github.wwqgtxx.soilqualitymonitor;
+package io.github.wwqgtxx.soilqualitymonitor.action;
 
 import com.opensymphony.xwork2.ActionSupport;
+import io.github.wwqgtxx.soilqualitymonitor.common.DataSave;
+import io.github.wwqgtxx.soilqualitymonitor.sensor.SensorConnector;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -71,7 +73,7 @@ public class ParseSensorConnectorAction extends ActionSupport{
     public String doGet() {
         dataMap.put("ready", sensorConnector.isInit());
         dataMap.put("success", true);
-        dataMap.put("lastTimestamp",DataSave.getLastDataTimestamp());
+        dataMap.put("lastTimestamp", DataSave.getLastDataTimestamp());
         dataMap.put("timestamp", System.currentTimeMillis());
         return SUCCESS;
 

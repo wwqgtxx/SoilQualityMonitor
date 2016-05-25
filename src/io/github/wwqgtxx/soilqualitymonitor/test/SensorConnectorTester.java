@@ -1,6 +1,6 @@
 package io.github.wwqgtxx.soilqualitymonitor.test;
 
-import io.github.wwqgtxx.soilqualitymonitor.SensorConnector;
+import io.github.wwqgtxx.soilqualitymonitor.sensor.SensorConnector;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;

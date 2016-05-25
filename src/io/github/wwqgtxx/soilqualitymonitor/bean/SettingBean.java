@@ -1,9 +1,9 @@
-package io.github.wwqgtxx.soilqualitymonitor;
+package io.github.wwqgtxx.soilqualitymonitor.bean;
 
 /**
  * Created by Administrator on 2016/5/16.
  */
-public class Setting {
+public class SettingBean {
     private static int detectiontime;
     private static int lowertemperature;
 
@@ -12,7 +12,7 @@ public class Setting {
     }
 
     public static void setDetectiontime(int detectiontime) {
-        Setting.detectiontime = detectiontime;
+        SettingBean.detectiontime = detectiontime;
     }
 
     public static int getLowertemperature() {
@@ -20,6 +20,6 @@ public class Setting {
     }
 
     public static void setLowertemperature(int lowertemperature) {
-        Setting.lowertemperature = lowertemperature;
+        SettingBean.lowertemperature = lowertemperature;
     }
 }

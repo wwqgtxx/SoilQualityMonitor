@@ -1,9 +1,9 @@
-package io.github.wwqgtxx.soilqualitymonitor;
+package io.github.wwqgtxx.soilqualitymonitor.bean;
 
 /**
  * Created by Administrator on 2016/5/16.
  */
-public class SensorData {
+public class SensorDataBean {
     private String soiltemperature;
 
     public String getSoiltemperature() {

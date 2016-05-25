@@ -1,4 +1,4 @@
-package io.github.wwqgtxx.soilqualitymonitor;
+package io.github.wwqgtxx.soilqualitymonitor.sensor;
 
 import java.io.*;
 import java.net.InetAddress;

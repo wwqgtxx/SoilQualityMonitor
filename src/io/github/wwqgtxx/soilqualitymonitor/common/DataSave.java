@@ -1,6 +1,7 @@
-package io.github.wwqgtxx.soilqualitymonitor;
+package io.github.wwqgtxx.soilqualitymonitor.common;
 
-import java.util.concurrent.ConcurrentHashMap;
+import io.github.wwqgtxx.soilqualitymonitor.bean.SensorDataBean;
+import io.github.wwqgtxx.soilqualitymonitor.bean.SettingBean;
 
 /**
  * Created by Administrator on 2016/5/16.
@@ -16,24 +17,24 @@ public class DataSave {
         DataSave.lastDataTimestamp = lastDataTimestamp;
     }
 
-    public static SensorData getSensorData() {
+    public static SensorDataBean getSensorData() {
         return sensorData;
     }
 
-    public static void setSensorData(SensorData sensorData) {
+    public static void setSensorData(SensorDataBean sensorData) {
         DataSave.sensorData = sensorData;
     }
 
-    private static SensorData sensorData;
+    private static SensorDataBean sensorData;
 
-    public static Setting getSetting() {
+    public static SettingBean getSetting() {
         return setting;
     }
 
-    public static void setSetting(Setting setting) {
+    public static void setSetting(SettingBean setting) {
         DataSave.setting = setting;
     }
 
-    private static Setting setting;
+    private static SettingBean setting;
 
 }

@@ -1,6 +1,8 @@
-package io.github.wwqgtxx.soilqualitymonitor; /**
+package io.github.wwqgtxx.soilqualitymonitor.common; /**
  * Created by Administrator on 2016/5/23.
  */
+
+import io.github.wwqgtxx.soilqualitymonitor.sensor.SensorConnector;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;

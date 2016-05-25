@@ -14,22 +14,22 @@
                 /test.jsp
             </result>
         </action>
-        <action name="SetDataAction" class="io.github.wwqgtxx.soilqualitymonitor.ParseDataAction" method="doSet">
+        <action name="SetDataAction" class="io.github.wwqgtxx.soilqualitymonitor.action.ParseDataAction" method="doSet">
             <result type="json">
                 <param name="root">dataMap</param>
             </result>
         </action>
-        <action name="GetDataAction" class="io.github.wwqgtxx.soilqualitymonitor.ParseDataAction" method="doGet">
+        <action name="GetDataAction" class="io.github.wwqgtxx.soilqualitymonitor.action.ParseDataAction" method="doGet">
             <result type="json">
                 <param name="root">dataMap</param>
             </result>
         </action>
-        <action name="SetSensorConnectorAction" class="io.github.wwqgtxx.soilqualitymonitor.ParseSensorConnectorAction" method="doSet">
+        <action name="SetSensorConnectorAction" class="io.github.wwqgtxx.soilqualitymonitor.action.ParseSensorConnectorAction" method="doSet">
             <result type="json">
                 <param name="root">dataMap</param>
             </result>
         </action>
-        <action name="GetSensorConnectorAction" class="io.github.wwqgtxx.soilqualitymonitor.ParseSensorConnectorAction" method="doGet">
+        <action name="GetSensorConnectorAction" class="io.github.wwqgtxx.soilqualitymonitor.action.ParseSensorConnectorAction" method="doGet">
             <result type="json">
                 <param name="root">dataMap</param>
             </result>
