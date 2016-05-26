@@ -4,22 +4,22 @@ package io.github.wwqgtxx.soilqualitymonitor.bean;
  * Created by Administrator on 2016/5/16.
  */
 public class SettingBean {
-    private static int detectiontime;
-    private static int lowertemperature;
+    private int detectiontime;
+    private int lowertemperature;
 
-    public static int getDetectiontime() {
+    public int getDetectiontime() {
         return detectiontime;
     }
 
-    public static void setDetectiontime(int detectiontime) {
-        SettingBean.detectiontime = detectiontime;
+    public void setDetectiontime(int detectiontime) {
+        this.detectiontime = detectiontime;
     }
 
-    public static int getLowertemperature() {
+    public int getLowertemperature() {
         return lowertemperature;
     }
 
-    public static void setLowertemperature(int lowertemperature) {
-        SettingBean.lowertemperature = lowertemperature;
+    public void setLowertemperature(int lowertemperature) {
+        this.lowertemperature = lowertemperature;
     }
 }

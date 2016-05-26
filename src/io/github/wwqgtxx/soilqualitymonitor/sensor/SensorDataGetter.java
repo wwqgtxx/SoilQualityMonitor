@@ -16,9 +16,7 @@ public class SensorDataGetter {
     private SensorConnector sensorConnector = SensorConnector.getSensorConnector();
 
 
-    public String getSoilmoisture() {
-        return sensorConnector.command("");
-    }
+    public String getSoilmoisture() {return sensorConnector.command("");}
 
     public String getSoilfertility() {
         return sensorConnector.command("");

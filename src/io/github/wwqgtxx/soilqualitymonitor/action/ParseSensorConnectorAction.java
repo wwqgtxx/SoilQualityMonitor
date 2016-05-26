@@ -3,6 +3,7 @@ package io.github.wwqgtxx.soilqualitymonitor.action;
 import com.opensymphony.xwork2.ActionSupport;
 import io.github.wwqgtxx.soilqualitymonitor.common.DataSave;
 import io.github.wwqgtxx.soilqualitymonitor.sensor.SensorConnector;
+import io.github.wwqgtxx.soilqualitymonitor.sensor.SensorDataUpdater;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -41,6 +42,7 @@ public class ParseSensorConnectorAction extends ActionSupport{
     private int scport;
     private Map<String,Object> dataMap= new HashMap<>();
     private SensorConnector sensorConnector = SensorConnector.getSensorConnector();
+    private SensorDataUpdater sensorDataUpdater = SensorDataUpdater.getSensorDataUpdater();
 
 
     public String doSet() {
@@ -66,7 +68,7 @@ public class ParseSensorConnectorAction extends ActionSupport{
                 return ERROR;
             }
         }
-
+        sensorDataUpdater.initUpdater();
         return doGet();
 
     }

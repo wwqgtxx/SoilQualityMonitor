@@ -86,6 +86,8 @@ public class SensorConnector {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }finally {
+                connectWorker.getInputQueue().clear();
+                connectWorker.getOutputQueue().clear();
                 lock.unlock();
             }
             return rusult;
