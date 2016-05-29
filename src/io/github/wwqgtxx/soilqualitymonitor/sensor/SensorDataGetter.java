@@ -2,6 +2,8 @@ package io.github.wwqgtxx.soilqualitymonitor.sensor;
 
 import io.github.wwqgtxx.soilqualitymonitor.bean.SensorDataBean;
 
+import java.time.LocalDateTime;
+
 /**
  * Created by Administrator on 2016/5/25.
  */
@@ -30,8 +32,12 @@ public class SensorDataGetter {
         return sensorConnector.command("");
     }
 
+    public String getSoiltemperature() {
+        return sensorConnector.command("");
+    }
+
     public SensorDataBean getSensorData() {
-        return new SensorDataBean(getSoilmoisture(),getSoilfertility(),getIndoortemperature(),getIndoormoisture());
+        return new SensorDataBean(getSoiltemperature(),getSoilmoisture(),getSoilfertility(),getIndoortemperature(),getIndoormoisture(), LocalDateTime.now());
     }
 
 }

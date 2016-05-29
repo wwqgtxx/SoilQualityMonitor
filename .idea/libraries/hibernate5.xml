@@ -1,0 +1,14 @@
+<component name="libraryTable">
+  <library name="hibernate5">
+    <CLASSES>
+      <root url="file://D:/java/lib/hibernate-release-5.1.0.Final/lib/required" />
+      <root url="file://D:/java/lib/hibernate-release-5.1.0.Final/lib/java8" />
+      <root url="file://D:/java/lib/hibernate-release-5.1.0.Final/lib/optional/c3p0" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+    <jarDirectory url="file://D:/java/lib/hibernate-release-5.1.0.Final/lib/java8" recursive="false" />
+    <jarDirectory url="file://D:/java/lib/hibernate-release-5.1.0.Final/lib/optional/c3p0" recursive="false" />
+    <jarDirectory url="file://D:/java/lib/hibernate-release-5.1.0.Final/lib/required" recursive="false" />
+  </library>
+</component>

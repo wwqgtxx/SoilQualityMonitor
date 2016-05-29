@@ -9,6 +9,32 @@
     <constant name="struts.devMode" value="true" />
     <constant name="struts.configuration.xml.reload" value="true" />
     <package name="default" namespace="/" extends="json-default">
+        <!--
+        <interceptors>
+            <interceptor name="loginInterceptor" class="loginInterceptor" />
+
+            <interceptor-stack name="loginDefaultStack">
+                <interceptor-ref name="loginInterceptor" />
+                <interceptor-ref name="defaultStack" />
+            </interceptor-stack>
+        </interceptors>
+
+        <default-interceptor-ref name="loginDefaultStack" />
+
+        <global-results>
+            <result name="login" type="redirect">userLogin.action</result>
+        </global-results>
+
+        <action name="userLogin" class="userLoginAction">
+            <result type="redirect">${goingToURL}</result>
+            <result name="input">/user_login.jsp</result>
+            <interceptor-ref name="defaultStack" />
+        </action>
+
+        <action name="userLogout" class="userLogoutAction"></action>
+
+         -->
+
         <action name="hello">
             <result>
                 /test.jsp

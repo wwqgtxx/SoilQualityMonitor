@@ -1,5 +1,7 @@
 package io.github.wwqgtxx.soilqualitymonitor.sensor;
 
+import io.github.wwqgtxx.soilqualitymonitor.bean.SensorDataBean;
+import io.github.wwqgtxx.soilqualitymonitor.common.DataBaseConnector;
 import io.github.wwqgtxx.soilqualitymonitor.common.DataSave;
 
 import java.util.concurrent.Executors;
@@ -12,6 +14,8 @@ import java.util.concurrent.locks.ReentrantLock;
  * Created by wwq on 2016/5/26.
  */
 public class SensorDataUpdater {
+    private static final SensorDataGetter sensorDataGetter= SensorDataGetter.getSensorDataGetter();
+    private static final DataBaseConnector dataBaseConnector = DataBaseConnector.getDataBaseConnecter();
     private ScheduledFuture scheduledFuture = null;
     private ReentrantLock lock = new ReentrantLock();
     private SensorDataUpdater(){}
@@ -42,9 +46,12 @@ public class SensorDataUpdater {
             ScheduledExecutorService service = Executors
                     .newSingleThreadScheduledExecutor();
             // 第二个参数为首次执行的延时时间，第三个参数为定时执行的间隔时间
-            scheduledFuture = service.scheduleAtFixedRate(()->{
-                DataSave.setSensorData(SensorDataGetter.getSensorDataGetter().getSensorData());
-            }, initialDelay, period, unit);
+            scheduledFuture = service.scheduleAtFixedRate(()-> {
+                SensorDataBean sensorData = sensorDataGetter.getSensorData();
+                dataBaseConnector.save(sensorData);
+                DataSave.setSensorData(sensorData);
+            }
+                    , initialDelay, period, unit);
         }finally {
             lock.unlock();
         }
