@@ -1,7 +1,7 @@
 package io.github.wwqgtxx.soilqualitymonitor.bean;
 
 
-import org.hibernate.annotations.NaturalId;
+
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -12,7 +12,12 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "SensorData")
 public class SensorDataBean {
-    @Id @GeneratedValue @Column(name="id") private long id;
+    @Id
+    @GeneratedValue(strategy=GenerationType.TABLE,generator="tableGenerator")
+    @TableGenerator(name="tableGenerator",initialValue=0,allocationSize=1)
+    @Column(name="id")
+    private long id;
+
     private LocalDateTime dateTime;
     private String soiltemperature;
     private String soilmoisture;

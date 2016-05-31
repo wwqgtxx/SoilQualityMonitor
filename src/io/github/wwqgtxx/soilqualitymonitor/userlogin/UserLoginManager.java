@@ -55,8 +55,8 @@ public class UserLoginManager {
     private boolean newUser(String username, String password, Boolean isAdmin){
         UserBean user = getUser(username);
         if (user==null){
-            logger.info("创建了一个用户"+user.toString());
             user = new UserBean(username,password,isAdmin);
+            logger.info("创建了一个用户"+user.toString());
             return dataBaseConnector.saveOrUpdate(user);
         }
         return false;

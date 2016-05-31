@@ -86,6 +86,7 @@ function getData() {
 
 
 $(document).ready(function(){
+    $("#username").text("当前用户："+$.cookie("MEMBER_LOGIN").split(",")[0]);
     getSCready();
     getData();
     setInterval(getData, 1000);

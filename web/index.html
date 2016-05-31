@@ -10,23 +10,22 @@
 <body>
     <div class="container">
         <nav class="navbar navbar-default" role="navigation">
-            <div class="navbar-header">
-                <a class="navbar-brand">土壤质量检测</a>
-            </div>
-            <div>
-                <ul class="nav navbar-nav navbar-left">
-                    <li class="active"><a href="/">首页</a></li>
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="UserLogoutAction">登出</a></li>
-                </ul>
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand">土壤质量检测</a>
+                </div>
+                <div>
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="/">首页</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a id="username"></a></li>
+                        <li><a href="UserLogoutAction">登出</a></li>
+                    </ul>
+                </div>
             </div>
         </nav>
         <div>
-            <div>
-                <h1>土壤质量检测</h1>
-            </div>
-
             <div id="scsettingdiv">
                 <h2>监控器数据设置</h2>
                 <form class="form-inline" id="scsettingform">
@@ -118,6 +117,7 @@
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="lib/bootstrap.min.js"></script>
     <script src="lib/jquery-confirm.js"></script>
+    <script src="lib/jquery.cookie.js"></script>
     <link href="lib/jquery-confirm.css" rel="stylesheet">
     <script src="index.js"></script>
 </body>

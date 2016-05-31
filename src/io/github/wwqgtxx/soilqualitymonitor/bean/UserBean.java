@@ -10,8 +10,15 @@ import javax.persistence.*;
 @Entity
 @Table(name = "User")
 public class UserBean {
-    @Id @GeneratedValue @Column(name="id") private long id;
-    @NaturalId private String username;
+    @Id
+    @GeneratedValue(strategy=GenerationType.TABLE,generator="tableGenerator")
+    @TableGenerator(name="tableGenerator",initialValue=0,allocationSize=1)
+    @Column(name="id")
+    private long id;
+
+    @NaturalId
+    private String username;
+
     private String password;
     private boolean isAdmin;
     private String cookie;
