@@ -11,10 +11,26 @@ import javax.persistence.*;
 @Table(name = "User")
 public class UserBean {
     @Id @GeneratedValue @Column(name="id") private long id;
-    @NaturalId private String name;
+    @NaturalId private String username;
     private String password;
     private boolean isAdmin;
     private String cookie;
+
+    public UserBean(){
+        this("","");
+    }
+    public UserBean(String username,String password){
+        this(username, password, false);
+    }
+    public UserBean(String username,String password,boolean isAdmin){
+        this(username, password, isAdmin,"");
+    }
+    public UserBean(String username,String password,boolean isAdmin,String cookie){
+        this.username = username;
+        this.password = password;
+        this.isAdmin = isAdmin;
+        this.cookie = cookie;
+    }
 
     public String getCookie() {
         return cookie;
@@ -32,12 +48,12 @@ public class UserBean {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getUsername() {
+        return username;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUsername(String name) {
+        this.username = name;
     }
 
     public String getPassword() {
@@ -60,7 +76,7 @@ public class UserBean {
     public String toString() {
         final StringBuilder sb = new StringBuilder("UserBean{");
         sb.append("id=").append(id);
-        sb.append(", name='").append(name).append('\'');
+        sb.append(", username='").append(username).append('\'');
         sb.append(", password='").append(password).append('\'');
         sb.append(", isAdmin=").append(isAdmin);
         sb.append(", cookie='").append(cookie).append('\'');

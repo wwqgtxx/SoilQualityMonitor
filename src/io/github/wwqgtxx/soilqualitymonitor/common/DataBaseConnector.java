@@ -8,6 +8,7 @@ import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -52,30 +53,13 @@ public class DataBaseConnector {
         return false;
     }
 
-    public boolean save(Object entity){
-        if(sessionFactory!=null){
-            Session session = sessionFactory.openSession();
-            try{
-                Transaction transaction = session.beginTransaction();
-                session.save(entity);
-                transaction.commit();
-                return true;
-            }catch (HibernateException e){
-                e.printStackTrace();
-            }
-            finally {
-                session.close();
-            }
-        }
-        return false;
-    }
-    public boolean save(Object ...entitys){
+    public boolean saveOrUpdate(Object ...entitys){
         if(sessionFactory!=null){
             Session session = sessionFactory.openSession();
             try{
                 Transaction transaction = session.beginTransaction();
                 for (Object entity:entitys) {
-                    session.save(entity);
+                    session.saveOrUpdate(entity);
                 }
                 transaction.commit();
                 return true;
@@ -94,9 +78,9 @@ public class DataBaseConnector {
         if(sessionFactory!=null){
             Session session = sessionFactory.openSession();
             try{
-                Transaction transaction = session.beginTransaction();
+                //Transaction transaction = session.beginTransaction();
                 result = session.createQuery( "from "+entityClass.getName() ).list();
-                transaction.commit();
+                //transaction.commit();
             }catch (HibernateException e){
                 e.printStackTrace();
             }
@@ -112,9 +96,26 @@ public class DataBaseConnector {
         if(sessionFactory!=null){
             Session session = sessionFactory.openSession();
             try{
-                Transaction transaction = session.beginTransaction();
+                //Transaction transaction = session.beginTransaction();
                 result = session.bySimpleNaturalId( entityClass).load(naturalIdValue);
-                transaction.commit();
+                //transaction.commit();
+            }catch (HibernateException e){
+                e.printStackTrace();
+            }
+            finally {
+                session.close();
+            }
+        }
+        return result;
+    }
+    public <T> T getById(Class<T> entityClass,Serializable IdValue){
+        T result = null;
+        if(sessionFactory!=null){
+            Session session = sessionFactory.openSession();
+            try{
+                //Transaction transaction = session.beginTransaction();
+                result = session.byId( entityClass).load(IdValue);
+                //transaction.commit();
             }catch (HibernateException e){
                 e.printStackTrace();
             }

@@ -13,11 +13,11 @@ import java.util.Map;
 /**
  * Created by wwq on 2016/5/27.
  */
-public class UserLogin extends ActionSupport implements ServletResponseAware, SessionAware {
-    private static Logger logger = LogManager.getLogger(UserLogin.class);
-    private static  UserLoginManager userLoginManager = UserLoginManager.getUserLoginManager();
+public class UserLoginAction extends ActionSupport implements ServletResponseAware, SessionAware {
+    private static final Logger logger = LogManager.getLogger(UserLoginAction.class);
+    private static final UserLoginManager userLoginManager = UserLoginManager.getUserLoginManager();
 
-    private String              name;
+    private String              username;
     private String              password;
     private boolean             rememberMe;
 
@@ -34,12 +34,12 @@ public class UserLogin extends ActionSupport implements ServletResponseAware, Se
         this.goingToURL = goingToURL;
     }
 
-    public String getName() {
-        return name;
+    public String getUsername() {
+        return username;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {
@@ -80,33 +80,38 @@ public class UserLogin extends ActionSupport implements ServletResponseAware, Se
     public String execute() throws Exception {
 
         boolean isLoginSucc = false;
-        isLoginSucc = userLoginManager.checkLoginWithNamePassword(name,password);
+        isLoginSucc = userLoginManager.checkLoginWithNamePassword(username,password);
 
         if (isLoginSucc) {
 
             //成功登录后记录session和cookie
             if (rememberMe) {
-                String t = name + "," + password;
+                String uuid=userLoginManager.MakeUUIDToUser(username);
+
+                String t = username + "," + uuid;
 
                 Cookie cookie = new Cookie(CommonConstants.COOKIE_KEY_REMEMBER_LOGIN, t);
-
+                cookie.setPath("/");
                 cookie.setMaxAge(CommonConstants.COOKIE_AGE);//设置cookie存活时间
                 servletResponse.addCookie(cookie);
 
             }
 
             //设置session中的登录用户信息
-            session.put(CommonConstants.SESSION_KEY_USER_NAME, name);
+            session.put(CommonConstants.SESSION_KEY_USER_NAME, username);
 
             //从session中获取登陆前URL，获取后移除session中的这个值
             String goingToURL = (String) session.get(CommonConstants.SESSION_KEY_URL_BEFORE_LOGIN);
+            logger.debug(goingToURL);
+            if (goingToURL==null)
+                goingToURL = "/";
             setGoingToURL(goingToURL);
             session.remove(CommonConstants.SESSION_KEY_URL_BEFORE_LOGIN);
 
-            logger.info("登录成功[" + name + "]");
+            logger.info("登录成功[" + username + "]");
             return SUCCESS;
         } else {
-            logger.error("登录失败[" + name + "][" + password + "]");
+            logger.error("登录失败[" + username + "][" + password + "]");
             return INPUT;
         }
     }

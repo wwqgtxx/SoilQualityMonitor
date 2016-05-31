@@ -46,10 +46,10 @@ public class LoginInterceptor extends AbstractInterceptor {
                     if (StringUtils.isNotBlank(value)) {
                         String[] split = value.split(",");
                         String name = split[0];
-                        String password = split[1];
+                        String uuid = split[1];
 
 
-                        if (userLoginManager.checkLoginWithNamePassword(name, password)) {
+                        if (userLoginManager.checkLoginWithCookie(name, uuid)) {
                             //check name/password from cookie success
                             logger.info("通过拦截器,cookie中有记录[" + name + "]");
                             session.put(CommonConstants.SESSION_KEY_USER_NAME, name);
@@ -74,14 +74,14 @@ public class LoginInterceptor extends AbstractInterceptor {
     private void setGoingToURL(Map<String, Object> session, ActionInvocation invocation) {
         String url = "";
         String namespace = invocation.getProxy().getNamespace();
-
-        if (StringUtils.isNotBlank(namespace) && !namespace.equals("/")) {
+        logger.debug(namespace);
+        if (StringUtils.isNotBlank(namespace) && !namespace.equals("/")&& !namespace.equals("UserLogoutAction")&& !namespace.equals("UserLoginAction")) {
             url = url + namespace;
         }
 
         String actionName = invocation.getProxy().getActionName();
-        if (StringUtils.isNotBlank(actionName)) {
-            url = url + "/" + actionName + ".action";
+        if (StringUtils.isNotBlank(actionName)&& !actionName.equals("UserLogoutAction")&& !actionName.equals("UserLoginAction")) {
+            url = url + "/" + actionName /* + ".action"*/ ;
         }
 
         logger.debug("拼接登录前URL，结果:" + CommonConstants.SESSION_KEY_URL_BEFORE_LOGIN + "[" + url

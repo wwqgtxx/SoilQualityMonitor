@@ -1,6 +1,8 @@
 package io.github.wwqgtxx.soilqualitymonitor.bean;
 
 
+import org.hibernate.annotations.NaturalId;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
@@ -123,6 +125,12 @@ public class SensorDataBean {
         sb.append("=");
         sb.append("\"");
         sb.append(dateTime);
+        sb.append("\"");
+        sb.append(",");
+        sb.append("id");
+        sb.append("=");
+        sb.append("\"");
+        sb.append(id);
         sb.append("\"");
         sb.append("]");
         sb.append(">");

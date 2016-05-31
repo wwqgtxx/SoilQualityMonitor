@@ -3,6 +3,7 @@ package io.github.wwqgtxx.soilqualitymonitor.common; /**
  */
 
 import io.github.wwqgtxx.soilqualitymonitor.sensor.SensorConnector;
+import io.github.wwqgtxx.soilqualitymonitor.userlogin.UserLoginManager;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
@@ -26,6 +27,8 @@ public class InitListener implements ServletContextListener,
          initialized(when the Web application is deployed). 
          You can initialize servlet context related data here.
       */
+        DataBaseConnector.getDataBaseConnecter().initSessionFactory();
+        UserLoginManager.getUserLoginManager().init();
         //SensorConnector.getSensorConnector().init();
     }
 
@@ -35,6 +38,7 @@ public class InitListener implements ServletContextListener,
          Application Server shuts down.
       */
         SensorConnector.getSensorConnector().destory();
+        DataBaseConnector.getDataBaseConnecter().closeSessionFactory();
     }
 
     // -------------------------------------------------------

@@ -5,13 +5,13 @@
         "http://struts.apache.org/dtds/struts-2.3.dtd">
 
 <struts>
-    <!--<constant name="struts.i18n.encoding" value="UTF-8"/>-->
+    <!--<constant username="struts.i18n.encoding" value="UTF-8"/>-->
     <constant name="struts.devMode" value="true" />
     <constant name="struts.configuration.xml.reload" value="true" />
     <package name="default" namespace="/" extends="json-default">
-        <!--
+
         <interceptors>
-            <interceptor name="loginInterceptor" class="loginInterceptor" />
+            <interceptor name="loginInterceptor" class="io.github.wwqgtxx.soilqualitymonitor.userlogin.LoginInterceptor" />
 
             <interceptor-stack name="loginDefaultStack">
                 <interceptor-ref name="loginInterceptor" />
@@ -22,22 +22,24 @@
         <default-interceptor-ref name="loginDefaultStack" />
 
         <global-results>
-            <result name="login" type="redirect">userLogin.action</result>
+            <result name="login" type="redirect">UserLoginAction</result>
         </global-results>
 
-        <action name="userLogin" class="userLoginAction">
+        <action name="UserLoginAction" class="io.github.wwqgtxx.soilqualitymonitor.userlogin.UserLoginAction">
             <result type="redirect">${goingToURL}</result>
-            <result name="input">/user_login.jsp</result>
+            <result name="input">/login.html</result>
             <interceptor-ref name="defaultStack" />
         </action>
 
-        <action name="userLogout" class="userLogoutAction"></action>
+        <action name="UserLogoutAction" class="io.github.wwqgtxx.soilqualitymonitor.userlogin.UserLogoutAction">
+            <result type="redirect">/</result>
+        </action>
 
-         -->
 
-        <action name="hello">
+
+        <action name="">
             <result>
-                /test.jsp
+                /index.html
             </result>
         </action>
         <action name="SetDataAction" class="io.github.wwqgtxx.soilqualitymonitor.action.ParseDataAction" method="doSet">

@@ -12,10 +12,15 @@ public class SensorDataBeanAddTester{
     public static void main(String args[]) throws Exception{
         DataBaseConnector dataBaseConnector = DataBaseConnector.getDataBaseConnecter();
         dataBaseConnector.initSessionFactory();
-        dataBaseConnector.save((new SensorDataBean("1","1","1","1","1", LocalDateTime.now())),(new SensorDataBean("2","2","2","2","2", LocalDateTime.now())));
+        //dataBaseConnector.save((new SensorDataBean("1","1","1","1","1", LocalDateTime.now())),(new SensorDataBean("2","2","2","2","2", LocalDateTime.now())));
         for ( SensorDataBean sensorDataBean : dataBaseConnector.getAllByClass(SensorDataBean.class) ) {
             System.out.println( sensorDataBean.toString() );
         }
+        SensorDataBean sensorData = dataBaseConnector.getById(SensorDataBean.class,12L);
+        sensorData.setSoilmoisture("5");
+        dataBaseConnector.saveOrUpdate(sensorData);
+        System.out.println(dataBaseConnector.getById(SensorDataBean.class,12L));
+        dataBaseConnector.closeSessionFactory();
 
     }
 }

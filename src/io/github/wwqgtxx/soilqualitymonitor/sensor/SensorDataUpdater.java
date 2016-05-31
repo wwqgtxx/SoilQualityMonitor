@@ -48,7 +48,7 @@ public class SensorDataUpdater {
             // 第二个参数为首次执行的延时时间，第三个参数为定时执行的间隔时间
             scheduledFuture = service.scheduleAtFixedRate(()-> {
                 SensorDataBean sensorData = sensorDataGetter.getSensorData();
-                dataBaseConnector.save(sensorData);
+                dataBaseConnector.saveOrUpdate(sensorData);
                 DataSave.setSensorData(sensorData);
             }
                     , initialDelay, period, unit);
