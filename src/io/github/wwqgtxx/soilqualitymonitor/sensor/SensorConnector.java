@@ -33,9 +33,9 @@ public class SensorConnector {
         initClientMode(host,port,2);
     }
     public void initClientMode(String host,int port,long timeout){
-        initClientMode(host,port,timeout,TimeUnit.MINUTES,(in,out)->{
-            out.println();
-            in.readLine();
+        initClientMode(host,port,timeout,TimeUnit.SECONDS,(in,out)->{
+            out.println("AT");
+            //in.readLine();
         });
     }
     public void initClientMode(String host,int port,long timeout,TimeUnit unit,DoHeartbeat doHeartbeat){
@@ -44,11 +44,11 @@ public class SensorConnector {
     public void initServerMode(int port){
         initServerMode(port, 2);
     }
-    public void initServerMode(int port,long timeout){initServerMode(port, timeout,TimeUnit.MINUTES);}
+    public void initServerMode(int port,long timeout){initServerMode(port, timeout,TimeUnit.SECONDS);}
     public void initServerMode(int port,long timeout,TimeUnit unit){
         initServerMode(port, timeout, unit,(in,out)->{
-            out.println();
-            in.readLine();
+            //out.println();
+            //in.readLine();
         });
     }
     public void initServerMode(int port,long timeout,TimeUnit unit,DoHeartbeat doHeartbeat){
@@ -73,7 +73,8 @@ public class SensorConnector {
     public String command(String str){
         return command((in,out)->{
             out.println(str);
-            return in.readLine();
+            String result = in.readLine();
+            return result;
         });
     }
     public String command(DoCommand doCommand){
@@ -127,6 +128,10 @@ public class SensorConnector {
                 try{
                     if(doCommand!=null) {
                         String result = doCommand.doCommand(in,out);
+                        if (result==null){
+                            inputQueue.put(doCommand);
+                            throw new IOException("result is null");
+                        }
                         outputQueue.put(result);
                     }
                     else{
@@ -165,12 +170,18 @@ public class SensorConnector {
                 } catch (IOException e) {
                     e.printStackTrace();
                 } catch (InterruptedException e) {
+                    isInterrupted = true;
                     e.printStackTrace();
-                }finally
-                {
+                } finally {
                     try {
                         socket.close();
                     } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        isInterrupted = true;
                         e.printStackTrace();
                     }
                 }
@@ -200,15 +211,16 @@ public class SensorConnector {
                 } catch (IOException e) {
                     e.printStackTrace();
                 } catch (InterruptedException e) {
+                    isInterrupted = true;
                     e.printStackTrace();
-                }finally
-                {
+                } finally {
                     try {
                         socket.close();
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
                 }
+
             }
 
         }
