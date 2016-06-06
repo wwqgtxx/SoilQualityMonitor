@@ -29,6 +29,7 @@ public class SensorConnector {
     public static final SensorConnector getSensorConnector(){
         return sensorConnector;
     }
+    public void initTestMode(){isInit = true;}
     public void initClientMode(String host,int port){
         initClientMode(host,port,2);
     }

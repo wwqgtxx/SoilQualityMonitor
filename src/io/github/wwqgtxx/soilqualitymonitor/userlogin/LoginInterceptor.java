@@ -30,7 +30,7 @@ public class LoginInterceptor extends AbstractInterceptor {
 
         //首先判断session，查找是否登录成功，通过拦截器
         if (session != null && session.get(CommonConstants.SESSION_KEY_USER_NAME) != null) {
-            logger.info("通过拦截器,session中有记录[" + session.get(CommonConstants.SESSION_KEY_USER_NAME)
+            logger.debug("通过拦截器,session中有记录[" + session.get(CommonConstants.SESSION_KEY_USER_NAME)
                     + "]");
             return invocation.invoke();
         }

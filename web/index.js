@@ -94,7 +94,7 @@ $(document).ready(function(){
 
 $("#sub").click(function(){
     $.ajax({
-        cache: true,
+        cache: false,
         type: "POST",
         url:"SetDataAction",
         data:$("#datasetform").serialize(),
@@ -127,9 +127,14 @@ $("#scserver").click(function(){
     $("#scportdiv").show();
 });
 
-$("subscsetting").click(function(){
+$("#sctest").click(function(){
+    $("#schostdiv").hide();
+    $("#scportdiv").hide();
+});
+
+$("#subscsetting").click(function(){
     $.ajax({
-        cache: true,
+        cache: false,
         type: "POST",
         url:"SetSensorConnectorAction",
         data:$("#scsettingform").serialize(),
@@ -148,8 +153,9 @@ $("subscsetting").click(function(){
             $.alert({
                 title: '成功',
                 content: '数据已提交',
-                confirm: function(){
+                confirm: function(json){
                     $("#scsettingdiv").hide();
+                    isSCready = json.ready;
                 }
             });
         }

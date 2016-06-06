@@ -3,6 +3,7 @@ package io.github.wwqgtxx.soilqualitymonitor.action;
 import com.opensymphony.xwork2.ActionSupport;
 import io.github.wwqgtxx.soilqualitymonitor.common.DataSave;
 import io.github.wwqgtxx.soilqualitymonitor.sensor.SensorConnector;
+import io.github.wwqgtxx.soilqualitymonitor.sensor.SensorDataGetter;
 import io.github.wwqgtxx.soilqualitymonitor.sensor.SensorDataUpdater;
 
 import java.util.HashMap;
@@ -55,10 +56,17 @@ public class ParseSensorConnectorAction extends ActionSupport{
         switch (scmode){
             case "server":{
                 sensorConnector.initServerMode(scport);
+                sensorDataUpdater.initUpdater(SensorDataGetter.getSensorDataGetter());
                 break;
             }
             case "client":{
                 sensorConnector.initClientMode(schost,scport);
+                sensorDataUpdater.initUpdater(SensorDataGetter.getSensorDataGetter());
+                break;
+            }
+            case "test":{
+                sensorConnector.initTestMode();
+                sensorDataUpdater.initUpdater(SensorDataGetter.RandomSensorDataGetter.getRandomSensorDataGetter());
                 break;
             }
             default:{
@@ -68,7 +76,7 @@ public class ParseSensorConnectorAction extends ActionSupport{
                 return ERROR;
             }
         }
-        sensorDataUpdater.initUpdater();
+
         return doGet();
 
     }

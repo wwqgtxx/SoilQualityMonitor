@@ -4,7 +4,12 @@ package io.github.wwqgtxx.soilqualitymonitor.bean;
 
 
 import javax.persistence.*;
+import java.sql.Timestamp;
+import java.time.Instant;
 import java.time.LocalDateTime;
+import java.time.ZoneOffset;
+import java.time.temporal.ChronoField;
+import java.time.temporal.TemporalField;
 
 /**
  * Created by Administrator on 2016/5/16.
@@ -19,6 +24,9 @@ public class SensorDataBean {
     private long id;
 
     private LocalDateTime dateTime;
+
+    @Transient
+    private long timestamp;
     private String soiltemperature;
     private String soilmoisture;
     private String soilfertility;
@@ -42,10 +50,12 @@ public class SensorDataBean {
         return dateTime;
     }
 
-    public void setDateTime(LocalDateTime dateTime) {
-        this.dateTime = dateTime;
-    }
+    public void setDateTime(LocalDateTime dateTime) {this.dateTime = dateTime;}
 
+    public long getTimestamp() {
+        //return dateTime.toEpochSecond(ZoneOffset.of("+8"));
+        return dateTime.toInstant(ZoneOffset.of("+8")).toEpochMilli();
+    }
 
     public String getSoiltemperature() {
         return soiltemperature;

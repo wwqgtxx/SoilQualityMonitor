@@ -42,6 +42,11 @@
                 /index.html
             </result>
         </action>
+        <action name="RealTimeDataAnalysis">
+            <result>
+                /RealTimeDataAnalysis.html
+            </result>
+        </action>
         <action name="SetDataAction" class="io.github.wwqgtxx.soilqualitymonitor.action.ParseDataAction" method="doSet">
             <result type="json">
                 <param name="root">dataMap</param>
