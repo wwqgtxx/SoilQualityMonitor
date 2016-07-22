@@ -163,3 +163,59 @@ $("#subscsetting").click(function(){
     return false;
 
 });
+/*
+$("#btnstop").click(function(){
+    $.confirm({
+        title: '警告',
+        content: '这将停止数据监控，是否继续？',
+        confirmButton: '确定',
+        cancelButton: '取消',
+        confirm: function(){
+            $.ajax({
+                cache: true,
+                type: "POST",
+                url:"CleanVoteAction",
+                data: {},
+                async: false,
+                error: function(request) {
+                    $.alert({
+                        title: '错误',
+                        content: '清空失败',
+                        confirm: function(){
+                            return;
+                        }
+                    });
+                },
+                success: function(json) {
+                    updateTableArea(json);
+                }
+            });
+            $.ajax({
+                cache: true,
+                type: "POST",
+                url:"CleanDanMuAction",
+                data: {},
+                async: false,
+                error: function(request) {
+                    $.alert({
+                        title: '错误',
+                        content: '清空失败',
+                        confirm: function(){
+                            return;
+                        }
+                    });
+                },
+                success: function(json) {
+                    updateDanMuList(json,true);
+                }
+            });
+        },
+        cancel: function(){
+            console.log('the user clicked cancel');
+        }
+    });
+
+    return false;
+
+});
+*/

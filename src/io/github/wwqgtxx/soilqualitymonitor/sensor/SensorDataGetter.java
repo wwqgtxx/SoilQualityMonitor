@@ -22,22 +22,16 @@ public class SensorDataGetter {
     private DataBaseConnector dataBaseConnector = DataBaseConnector.getDataBaseConnecter();
 
 
-    public String getSoilmoisture() {return sensorConnector.command("");}
+    public String getSoilmoisture() {return sensorConnector.command("F!!!");}
 
-    public String getSoilfertility() {
-        return sensorConnector.command("");
-    }
+    public String getSoilfertility() {return "0";}
 
-    public String getIndoortemperature() {
-        return sensorConnector.command("");
-    }
+    public String getIndoortemperature() {return sensorConnector.command("F@@@").substring(0,2);}
 
-    public String getIndoormoisture() {
-        return sensorConnector.command("");
-    }
+    public String getIndoormoisture() {return sensorConnector.command("F@@@").substring(2,4);}
 
     public String getSoiltemperature() {
-        return sensorConnector.command("");
+        return "0";
     }
 
     public SensorDataBean getSensorData() {

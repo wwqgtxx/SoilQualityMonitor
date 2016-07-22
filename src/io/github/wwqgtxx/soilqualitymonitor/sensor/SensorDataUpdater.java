@@ -18,6 +18,7 @@ import java.util.concurrent.locks.ReentrantLock;
 public class SensorDataUpdater {
     private static Logger logger = LogManager.getLogger(SensorDataUpdater.class);
     private SensorDataGetter sensorDataGetter;
+    private SensorConnector sensorConnector = SensorConnector.getSensorConnector();
     private static final DataBaseConnector dataBaseConnector = DataBaseConnector.getDataBaseConnecter();
     private ScheduledExecutorService service = Executors
             .newSingleThreadScheduledExecutor();
@@ -48,19 +49,24 @@ public class SensorDataUpdater {
         try{
             lock.lock();
             logger.info("SensorDataUpdater start init");
-            if (scheduledFuture!=null)
-                scheduledFuture.cancel(false);
+            stopUpdater();
+            this.sensorDataGetter = sensorDataGetter;
 
             // 第二个参数为首次执行的延时时间，第三个参数为定时执行的间隔时间
             scheduledFuture = service.scheduleAtFixedRate(()-> {
+                logger.debug("geting data");
                 SensorDataBean sensorData = sensorDataGetter.getSensorData();
                 dataBaseConnector.saveOrUpdate(sensorData);
                 DataSave.setSensorData(sensorData);
                 DataSave.setLastDataTimestamp(System.currentTimeMillis());
+                logger.debug("finish get data");
             }
                     , initialDelay, period, unit);
             logger.info("SensorDataUpdater finish init");
-        }finally {
+        }catch (Exception e){
+            logger.error("init error",e);
+        }
+        finally {
             lock.unlock();
         }
 
@@ -68,6 +74,15 @@ public class SensorDataUpdater {
 
     public void changeUpdateTime(long period, TimeUnit unit){
         initUpdater(sensorDataGetter,period,unit);
+        sensorConnector.command("K"+String.format("%03d",new Long(period/60).intValue()));
+    }
+
+    public void stopUpdater(){
+        if (scheduledFuture!=null){
+            logger.info("stop SensorDataUpdater");
+            scheduledFuture.cancel(false);
+        }
+
     }
 
 }

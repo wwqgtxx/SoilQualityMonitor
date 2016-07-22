@@ -1,5 +1,8 @@
 package io.github.wwqgtxx.soilqualitymonitor.sensor;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.io.*;
 import java.net.InetAddress;
 import java.net.ServerSocket;
@@ -17,6 +20,7 @@ public class SensorConnector {
 
     }
     private static SensorConnector sensorConnector = new SensorConnector();
+    private static Logger logger = LogManager.getLogger(SensorConnector.class);
     private ReentrantLock lock;
     private ConnectWorker connectWorker;
     private Thread connectThread;
@@ -73,7 +77,23 @@ public class SensorConnector {
     }
     public String command(String str){
         return command((in,out)->{
+            logger.info(str);
             out.println(str);
+//            StringBuilder sb = new StringBuilder();
+//            while (in.ready()){
+//                int a = in.read();
+//                if (a == '\r'){
+//                    continue;
+//                }
+//                if (a == '\n'){
+//                    break;
+//                }
+//                char c = (char)a;
+//
+//                sb.append(c);
+//                logger.debug(c);
+//            }
+//            String result = sb.toString();
             String result = in.readLine();
             return result;
         });
@@ -122,8 +142,8 @@ public class SensorConnector {
             this.doHeartbeat= doHeartbeat;
         }
         private void parseSocket(Socket socket) throws IOException, InterruptedException {
-            BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-            PrintWriter out = new PrintWriter(new BufferedWriter(new OutputStreamWriter(socket.getOutputStream())), true);
+            BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream(),"ISO-8859-1"));
+            PrintWriter out = new PrintWriter(new BufferedWriter(new OutputStreamWriter(socket.getOutputStream(),"ISO-8859-1")), true);
             while (true){
                 DoCommand doCommand = inputQueue.poll(timeout,unit);
                 try{
