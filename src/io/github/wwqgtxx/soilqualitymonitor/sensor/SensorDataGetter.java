@@ -2,6 +2,8 @@ package io.github.wwqgtxx.soilqualitymonitor.sensor;
 
 import io.github.wwqgtxx.soilqualitymonitor.bean.SensorDataBean;
 import io.github.wwqgtxx.soilqualitymonitor.common.DataBaseConnector;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -20,15 +22,43 @@ public class SensorDataGetter {
     private static final SensorDataGetter sensorDataGetter = new SensorDataGetter();
     private SensorConnector sensorConnector = SensorConnector.getSensorConnector();
     private DataBaseConnector dataBaseConnector = DataBaseConnector.getDataBaseConnecter();
+    private static Logger logger = LogManager.getLogger(SensorDataGetter.class);
 
 
-    public String getSoilmoisture() {return sensorConnector.command("F!!!");}
+    public String getSoilmoisture() {
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        String result = sensorConnector.command("F!!!").substring(0,2);
+        logger.debug(result);
+        return result;
+    }
 
     public String getSoilfertility() {return "0";}
 
-    public String getIndoortemperature() {return sensorConnector.command("F@@@").substring(0,2);}
+    public String getIndoortemperature() {
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        String result = sensorConnector.command("F@@@").substring(0,2);
+        logger.debug(result);
+        return result;
+    }
 
-    public String getIndoormoisture() {return sensorConnector.command("F@@@").substring(2,4);}
+    public String getIndoormoisture() {
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        String result = sensorConnector.command("F@@@").substring(2,4);
+        logger.debug(result);
+        return result;
+    }
 
     public String getSoiltemperature() {
         return "0";

@@ -5,7 +5,7 @@ package io.github.wwqgtxx.soilqualitymonitor.bean;
  */
 public class SettingBean {
     private int detectiontime;
-    private int lowertemperature;
+//    private int lowertemperature;
 
     public int getDetectiontime() {
         return detectiontime;
@@ -15,11 +15,11 @@ public class SettingBean {
         this.detectiontime = detectiontime;
     }
 
-    public int getLowertemperature() {
-        return lowertemperature;
-    }
-
-    public void setLowertemperature(int lowertemperature) {
-        this.lowertemperature = lowertemperature;
-    }
+//    public int getLowertemperature() {
+//        return lowertemperature;
+//    }
+//
+//    public void setLowertemperature(int lowertemperature) {
+//        this.lowertemperature = lowertemperature;
+//    }
 }

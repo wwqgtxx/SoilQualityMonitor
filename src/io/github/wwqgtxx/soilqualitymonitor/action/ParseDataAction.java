@@ -46,7 +46,7 @@ public class ParseDataAction extends ActionSupport{
             return ERROR;
         }
         DataSave.setSetting(setting);
-        SensorDataUpdater.getSensorDataUpdater().changeUpdateTime(setting.getDetectiontime(), TimeUnit.SECONDS);
+        SensorDataUpdater.getSensorDataUpdater().changeUpdateTime(setting.getDetectiontime(), TimeUnit.MINUTES);
         return doGet();
 
     }

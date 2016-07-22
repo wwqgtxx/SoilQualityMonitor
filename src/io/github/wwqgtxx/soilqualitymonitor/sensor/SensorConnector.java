@@ -8,6 +8,7 @@ import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.util.Random;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.ReentrantLock;
@@ -24,6 +25,7 @@ public class SensorConnector {
     private ReentrantLock lock;
     private ConnectWorker connectWorker;
     private Thread connectThread;
+    Random ra =new Random();
 
     public boolean isInit() {
         return isInit;
@@ -35,11 +37,13 @@ public class SensorConnector {
     }
     public void initTestMode(){isInit = true;}
     public void initClientMode(String host,int port){
-        initClientMode(host,port,2);
+        initClientMode(host,port,30);
     }
     public void initClientMode(String host,int port,long timeout){
         initClientMode(host,port,timeout,TimeUnit.SECONDS,(in,out)->{
-            out.println("AT");
+            String str = String.format("%04d",ra.nextInt(9999));
+            logger.debug(str);
+            out.println(str);
             //in.readLine();
         });
     }
@@ -77,7 +81,7 @@ public class SensorConnector {
     }
     public String command(String str){
         return command((in,out)->{
-            logger.info(str);
+            logger.debug(str);
             out.println(str);
 //            StringBuilder sb = new StringBuilder();
 //            while (in.ready()){
@@ -86,15 +90,21 @@ public class SensorConnector {
 //                    continue;
 //                }
 //                if (a == '\n'){
-//                    break;
+//                    if (sb.length() !=0){
+//                        break;
+//                    }
+//                    else{
+//                        continue;
+//                    }
 //                }
 //                char c = (char)a;
 //
 //                sb.append(c);
-//                logger.debug(c);
+//                //logger.debug(c);
 //            }
 //            String result = sb.toString();
             String result = in.readLine();
+            logger.debug(result);
             return result;
         });
     }
@@ -156,6 +166,7 @@ public class SensorConnector {
                         outputQueue.put(result);
                     }
                     else{
+                        logger.debug("do a Heartbeat!");
                         doHeartbeat.doHeartbeat(in,out);
                     }
                 }catch (IOException e){

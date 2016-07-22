@@ -34,7 +34,7 @@ public class SensorDataUpdater {
     private static SensorDataUpdater sensorDataUpdater = new SensorDataUpdater();
 
     public void initUpdater(SensorDataGetter sensorDataGetter){
-        initUpdater(sensorDataGetter,10);
+        initUpdater(sensorDataGetter,60);
     }
 
     public void initUpdater(SensorDataGetter sensorDataGetter,long period){
@@ -74,13 +74,13 @@ public class SensorDataUpdater {
 
     public void changeUpdateTime(long period, TimeUnit unit){
         initUpdater(sensorDataGetter,period,unit);
-        sensorConnector.command("K"+String.format("%03d",new Long(period/60).intValue()));
+        sensorConnector.command("K"+String.format("%03d",new Long(period).intValue()));
     }
 
     public void stopUpdater(){
         if (scheduledFuture!=null){
             logger.info("stop SensorDataUpdater");
-            scheduledFuture.cancel(false);
+            scheduledFuture.cancel(true);
         }
 
     }

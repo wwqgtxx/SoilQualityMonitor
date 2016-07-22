@@ -92,7 +92,7 @@ $(document).ready(function(){
     setInterval(getData, 1000);
 });
 
-$("#sub").click(function(){
+$("#btnsub").click(function(){
     $.ajax({
         cache: false,
         type: "POST",
