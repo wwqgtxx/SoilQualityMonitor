@@ -17,6 +17,15 @@ import java.util.concurrent.locks.ReentrantLock;
  */
 public class SensorDataUpdater {
     private static Logger logger = LogManager.getLogger(SensorDataUpdater.class);
+
+    public SensorDataGetter getSensorDataGetter() {
+        return sensorDataGetter;
+    }
+
+    public SensorConnector getSensorConnector() {
+        return sensorConnector;
+    }
+
     private SensorDataGetter sensorDataGetter;
     private SensorConnector sensorConnector = SensorConnector.getSensorConnector();
     private static final DataBaseConnector dataBaseConnector = DataBaseConnector.getDataBaseConnecter();
@@ -34,7 +43,7 @@ public class SensorDataUpdater {
     private static SensorDataUpdater sensorDataUpdater = new SensorDataUpdater();
 
     public void initUpdater(SensorDataGetter sensorDataGetter){
-        initUpdater(sensorDataGetter,60);
+        initUpdater(sensorDataGetter,10);
     }
 
     public void initUpdater(SensorDataGetter sensorDataGetter,long period){
@@ -74,7 +83,6 @@ public class SensorDataUpdater {
 
     public void changeUpdateTime(long period, TimeUnit unit){
         initUpdater(sensorDataGetter,period,unit);
-        sensorConnector.command("K"+String.format("%03d",new Long(period).intValue()));
     }
 
     public void stopUpdater(){

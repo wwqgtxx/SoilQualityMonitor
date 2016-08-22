@@ -100,8 +100,12 @@
                 <h2>数据设置</h2>
                 <form class="form-inline" id="datasetform">
                     <div class="form-group">
-                        <label for="detectiontime">检测时间</label>
-                        <input type="text" class="form-control" name="setting.detectiontime" id="detectiontime" value="" placeholder="检测时间">
+                        <label for="detectiontime">数据刷新时间（秒）</label>
+                        <input type="text" class="form-control" name="setting.updatetime" id="updatetime" value="" placeholder="数据刷新时间">
+                    </div>
+                    <div class="form-group">
+                        <label for="detectiontime">浇水检测周期（分钟）</label>
+                        <input type="text" class="form-control" name="setting.detectiontime" id="detectiontime" value="" placeholder="浇水检测周期">
                     </div>
                     <div class="form-group hidden">
                         <label for="lowertemperature">温度下限</label>

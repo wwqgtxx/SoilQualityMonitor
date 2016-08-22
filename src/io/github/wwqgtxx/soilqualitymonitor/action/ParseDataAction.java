@@ -6,7 +6,6 @@ import java.util.concurrent.TimeUnit;
 
 import com.opensymphony.xwork2.ActionSupport;
 import io.github.wwqgtxx.soilqualitymonitor.common.DataSave;
-import io.github.wwqgtxx.soilqualitymonitor.bean.SensorDataBean;
 import io.github.wwqgtxx.soilqualitymonitor.bean.SettingBean;
 import io.github.wwqgtxx.soilqualitymonitor.sensor.SensorDataGetter;
 import io.github.wwqgtxx.soilqualitymonitor.sensor.SensorDataUpdater;
@@ -46,7 +45,8 @@ public class ParseDataAction extends ActionSupport{
             return ERROR;
         }
         DataSave.setSetting(setting);
-        SensorDataUpdater.getSensorDataUpdater().changeUpdateTime(setting.getDetectiontime(), TimeUnit.MINUTES);
+        SensorDataUpdater.getSensorDataUpdater().changeUpdateTime(setting.getUpdatetime(), TimeUnit.SECONDS);
+        SensorDataUpdater.getSensorDataUpdater().getSensorConnector().command("K"+String.format("%03d",new Long(setting.getDetectiontime()).intValue()));
         return doGet();
 
     }
